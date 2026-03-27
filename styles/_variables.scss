@@ -1,0 +1,21 @@
+// ─── Typography ──────────────────────────────────────────────────────────────
+$font-body: "Georgia", serif;
+$font-mono: "Courier New", monospace;
+
+// ─── Color ───────────────────────────────────────────────────────────────────
+// Placeholder palette — swap these out when the aesthetic direction firms up
+$color-bg: #0e0e0e;
+$color-text: #e8e2d9;
+$color-text-muted: #7a746d;
+$color-accent: #c9b99a;
+$color-border: #2a2a2a;
+
+// ─── Spacing ─────────────────────────────────────────────────────────────────
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 2rem;
+$space-xl: 4rem;
+
+// ─── Layout ──────────────────────────────────────────────────────────────────
+$max-width: 720px;

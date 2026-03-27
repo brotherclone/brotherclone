@@ -1,0 +1,129 @@
+@use "@/styles/variables" as *;
+
+.drop-page {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: $space-lg $space-md;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+
+.drop-header {
+  margin-bottom: $space-xl;
+}
+
+.drop-header__wordmark {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+  color: $color-text-muted;
+}
+
+// ─── Drop card ───────────────────────────────────────────────────────────────
+
+.drop-card {
+  flex: 1;
+}
+
+.drop-card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-bottom: $space-lg;
+}
+
+.drop-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.drop-card__name {
+  font-size: 1.5rem;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+.drop-card__description {
+  color: $color-text-muted;
+  font-size: 0.95rem;
+}
+
+.drop-card__footer {
+  display: flex;
+  align-items: baseline;
+  gap: $space-md;
+}
+
+.drop-card__price {
+  font-family: $font-mono;
+  font-size: 1rem;
+}
+
+.drop-card__mode {
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+
+  &--affiliate  { color: #a0b89a; }
+  &--dropship   { color: #9aaab8; }
+  &--in-hand    { color: $color-accent; }
+}
+
+.drop-card__cta {
+  display: inline-block;
+  margin-top: $space-sm;
+  padding: $space-sm $space-lg;
+  border: 1px solid $color-border;
+  background: transparent;
+  color: $color-text;
+  font-family: $font-body;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    border-color: $color-accent;
+    color: $color-accent;
+  }
+}
+
+// ─── Empty state ─────────────────────────────────────────────────────────────
+
+.drop-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+
+  p {
+    color: $color-text-muted;
+    font-style: italic;
+  }
+}
+
+// ─── Footer ──────────────────────────────────────────────────────────────────
+
+.drop-footer {
+  margin-top: $space-xl;
+  padding-top: $space-md;
+  border-top: 1px solid $color-border;
+
+  a {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: $color-text-muted;
+
+    &:hover {
+      color: $color-text;
+    }
+  }
+}

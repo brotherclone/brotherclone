@@ -1,0 +1,13 @@
+@use "variables" as *;
+@use "reset";
+
+body {
+  background-color: $color-bg;
+  color: $color-text;
+  font-family: $font-body;
+}
+
+::selection {
+  background-color: $color-accent;
+  color: $color-bg;
+}
