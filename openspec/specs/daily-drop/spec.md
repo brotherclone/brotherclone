@@ -2,9 +2,7 @@
 
 ## Purpose
 Controls what product is shown on the homepage and when the cache refreshes to reveal it.
-
 ## Requirements
-
 ### Requirement: Active Product Display
 The homepage SHALL display the single product currently tagged `active-drop` in Fourthwall.
 
@@ -44,3 +42,19 @@ The homepage SHALL also revalidate automatically every 60 seconds independent of
 #### Scenario: Passive revalidation
 - **WHEN** 60 seconds have elapsed since the last render
 - **THEN** Next.js ISR re-fetches `getActiveProduct()` in the background and serves updated content on the next request
+
+### Requirement: Affiliate Disclosure Label
+When an affiliate drop carries a commission relationship, the homepage SHALL display a visible disclosure label so visitors know a referral fee may be earned.
+
+#### Scenario: Commission link — label shown
+- **WHEN** `mode === "affiliate"` and `hasCommission === true`
+- **THEN** a disclosure label reading "affiliate link" is rendered near the CTA
+
+#### Scenario: Plain referral link — no label
+- **WHEN** `mode === "affiliate"` and `hasCommission` is `false` or absent
+- **THEN** no disclosure label is rendered; the CTA appears without it
+
+#### Scenario: Non-affiliate mode — no label
+- **WHEN** `mode` is `"dropship"` or `"in-hand"`
+- **THEN** no disclosure label is rendered regardless of any other fields
+

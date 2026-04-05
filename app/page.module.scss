@@ -95,6 +95,15 @@
   }
 }
 
+.drop-card__disclosure {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+  margin-top: $space-xs;
+}
+
 // ─── Empty state ─────────────────────────────────────────────────────────────
 
 .drop-empty {

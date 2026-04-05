@@ -8,6 +8,8 @@ Keeps the Fourthwall API token server-side by routing all Fourthwall Storefront 
 ### Requirement: Token Isolation
 The Fourthwall `FOURTHWALL_STOREFRONT_TOKEN` MUST NOT appear in any client bundle or browser-visible response. All calls to the Fourthwall Storefront API SHALL go through the server-side proxy.
 
+> **Note:** This requirement targets client-initiated and externally-originating requests. Server-side lib code (e.g. `lib/fourthwall.ts`) running inside Next.js server components may call the Fourthwall API directly, because the token is never serialised into the client bundle in that context. Routing a server component through the proxy would create a needless internal HTTP roundtrip without improving token safety.
+
 #### Scenario: Proxy call succeeds
 - **WHEN** the server calls `GET /api/proxy/v1/products`
 - **THEN** the handler adds the `Authorization: Bearer <token>` header, forwards to Fourthwall, and returns the response body with the same HTTP status
