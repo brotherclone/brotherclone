@@ -38,14 +38,19 @@ export default async function DropPage() {
             </div>
 
             {product.mode === "affiliate" && product.affiliateUrl ? (
-              <a
-                href={product.affiliateUrl}
-                className={styles["drop-card__cta"]}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                get it →
-              </a>
+              <>
+                <a
+                  href={product.affiliateUrl}
+                  className={styles["drop-card__cta"]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  get it →
+                </a>
+                {product.hasCommission && (
+                  <span className={styles["drop-card__disclosure"]}>affiliate link</span>
+                )}
+              </>
             ) : (
               <button className={styles["drop-card__cta"]}>
                 add to cart

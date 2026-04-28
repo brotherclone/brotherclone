@@ -12,7 +12,8 @@ export interface DropProduct {
   price: number; // in cents
   imageUrl: string;
   mode: ProductMode;
-  affiliateUrl?: string; // only set when mode === "affiliate"
+  affiliateUrl?: string;   // only set when mode === "affiliate"
+  hasCommission?: boolean; // true = FTC disclosure required; only relevant when mode === "affiliate"
 }
 
 export interface ArchiveEntry {

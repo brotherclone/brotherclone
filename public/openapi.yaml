@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: brotherclone API
+  description: Internal API for the brotherclone eShop — one curated art item per day.
+  version: 0.1.0
+servers:
+  - url: /api
+    description: Application server
+
+paths:
+  /proxy/{path}:
+    get:
+      summary: Fourthwall API proxy
+      description: >
+        Server-side proxy for the Fourthwall Storefront API. Forwards the request
+        to Fourthwall while keeping the API token out of the client bundle.
+        Passes through all query parameters.
+      parameters:
+        - name: path
+          in: path
+          required: true
+          description: Fourthwall API path, e.g. `v1/products`
+          schema:
+            type: string
+          example: v1/products
+      responses:
+        "200":
+          description: Proxied response from Fourthwall (shape varies by endpoint)
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Storefront token not configured
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /daily-drop:
+    get:
+      summary: Daily drop revalidation
+      description: >
+        Vercel Cron endpoint — fires at 16:00 UTC (noon Eastern) daily.
+        Busts the ISR cache on `/` and `/archive` so the new product appears
+        without a full redeploy. Requires a Bearer token in production.
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Cache revalidated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  revalidated:
+                    type: boolean
+                    example: true
+                  ts:
+                    type: integer
+                    description: Unix timestamp in milliseconds
+                    example: 1748390400000
+        "401":
+          description: Unauthorized — missing or invalid Bearer token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: CRON_SECRET env var value, set by Vercel Cron in production
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Unauthorized
